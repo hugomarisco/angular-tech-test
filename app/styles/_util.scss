@@ -1,0 +1,72 @@
+.flex {
+  display: flex;
+  align-items: center;
+
+  &.justify-between {
+    justify-content: space-between;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+}
+
+.w10 { width: 10%; }
+.w15 { width: 15%; }
+.w20 { width: 20%; }
+.w25 { width: 25%; }
+.w30 { width: 30%; }
+.w35 { width: 35%; }
+.w40 { width: 40%; }
+.w45 { width: 45%; }
+.w50 { width: 50%; }
+.w55 { width: 55%; }
+.w60 { width: 60%; }
+.w65 { width: 65%; }
+.w70 { width: 70%; }
+.w75 { width: 75%; }
+.w80 { width: 80%; }
+.w85 { width: 85%; }
+.w90 { width: 90%; }
+.w95 { width: 95%; }
+.w100 { width: 100%; }
+
+.p10 { padding: 10px; }
+.p15 { padding: 15px; }
+.p20 { padding: 20px; }
+.p25 { padding: 25px; }
+.p30 { padding: 30px; }
+.p35 { padding: 35px; }
+.p40 { padding: 40px; }
+.p45 { padding: 45px; }
+.p50 { padding: 50px; }
+.p55 { padding: 55px; }
+.p60 { padding: 60px; }
+.p65 { padding: 65px; }
+.p70 { padding: 70px; }
+.p75 { padding: 75px; }
+.p80 { padding: 80px; }
+.p85 { padding: 85px; }
+.p90 { padding: 90px; }
+.p95 { padding: 95px; }
+.p100 { padding: 100px; }
+
+.mb10 { margin-bottom: 10px; }
+.mb15 { margin-bottom: 15px; }
+.mb20 { margin-bottom: 20px; }
+.mb25 { margin-bottom: 25px; }
+.mb30 { margin-bottom: 30px; }
+.mb35 { margin-bottom: 35px; }
+.mb40 { margin-bottom: 40px; }
+.mb45 { margin-bottom: 45px; }
+.mb50 { margin-bottom: 50px; }
+.mb55 { margin-bottom: 55px; }
+.mb60 { margin-bottom: 60px; }
+.mb65 { margin-bottom: 65px; }
+.mb70 { margin-bottom: 70px; }
+.mb75 { margin-bottom: 75px; }
+.mb80 { margin-bottom: 80px; }
+.mb85 { margin-bottom: 85px; }
+.mb90 { margin-bottom: 90px; }
+.mb95 { margin-bottom: 95px; }
+.mb100 { margin-bottom: 100px; }

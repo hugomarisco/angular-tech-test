@@ -1,0 +1,85 @@
+.highlight {
+  color: $white;
+  background: $orange;
+}
+
+.success {
+  color: $green-blue;
+}
+
+.danger {
+  color: $red;
+}
+
+.circle {
+  border-radius: 50%;
+  padding: 1.5rem;
+  margin: 0;
+
+  &.success {
+    color: $white;
+    background: $green-blue;
+  }
+
+  &.warning {
+    color: $white;
+    background: $brown;
+  }
+}
+
+day-separator {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  &.success {
+    color: $white;
+    background: $green;
+  }
+
+  &.warning {
+    color: $white;
+    background: $yellow;
+  }
+
+  &.danger {
+    color: $black;
+    background: $red;
+  }
+
+  &.shadow {
+    font-size: 1rem;
+    background: $white;
+    color: $black;
+    border: 1px solid $gray;
+    box-shadow: 3px 3px 3px $gray;
+  }
+}
+
+.marker {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+
+  &.success {
+    background: $green-blue;
+  }
+
+  &.warning {
+    background: $yellow;
+  }
+
+  &.danger {
+    background: $red;
+  }
+
+  &::before {
+    content: '';
+  }
+}

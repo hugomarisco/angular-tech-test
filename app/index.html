@@ -27,24 +27,24 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="ProfileCtrl">
       <div class="row highlight">
-        <div class="col-xs-12 col-md-6">
-          <div class="flex justify-between">
+        <div class="col-xs-12 col-md-6 p70">
+          <div class="flex justify-between mb20">
             <div class="w20">
-              <img src="images/Face2.png" class="w100 circle" />
+              <img ng-src="{{ user.info.image }}" class="w100 circle" />
             </div>
 
             <div class="w75">
-              <h2>Andrew Baker</h2>
+              <h2>{{ user.info.name }}</h2>
 
-              <small>
+              <div class="mb20 small">
                 <img src="images/SmallTickIcon.png" class="icon" />
-                12 goals complete this week
-                |
+                {{ user.info.goals_complete }} goals complete this week
+                &nbsp;|&nbsp;
                 <img src="images/SmallSpannerIcon.png" class="icon" />
-                3 open problems owned
-              </small>
+                {{ user.info.problems_owned }} open problems owned
+              </div>
 
               <div class="flex justify-between">
                 <span>
@@ -55,41 +55,43 @@
                 </span>
               </div>
 
-              <div class="progress"></div>
+              <progress-bar percentage="0.84"></progress-bar>
             </div>
           </div>
 
-          <div class="flex justify-between">
-            <b>BADGES (12)</b>
+          <div class="flex justify-between mb20">
+            <b>BADGES ({{ user.info.total_badges }})</b>
 
-            <a href="#" class="w15">
+            <a href="#" class="w20">
               <img src="images/ViewAllButton.png" class="w100" />
             </a>
           </div>
 
           <div class="flex justify-between">
-            <img src="images/RedBadge.png" />
-            <img src="images/OrangeBadge.png" />
-            <img src="images/BlueBadge.png" />
-            <img src="images/PinkBadge.png" />
-            <img src="images/GreenBadge.png" />
+            <img src="images/RedBadge.png" class="w15" />
+            <img src="images/OrangeBadge.png" class="w15" />
+            <img src="images/BlueBadge.png" class="w15" />
+            <img src="images/PinkBadge.png" class="w15" />
+            <img src="images/GreenBadge.png" class="w15" />
           </div>
         </div>
-        <div class="col-xs-12 col-md-6">
-          <div class="flex justify-between">
+
+
+        <div class="col-xs-12 col-md-6 p70">
+          <div class="flex justify-between mb20">
             <h2>Personal Skills</h2>
 
-            <a href="#" class="w15">
+            <a href="#" class="w20">
               <img src="images/ViewAllButton.png" class="w100" />
             </a>
           </div>
 
-          <div class="flex justify-between">
-            <img src="images/BriefcaseIcon.png" class="w10" />
+          <div class="flex justify-between mb10" ng-repeat="skill in user.skills">
+            <img ng-src="images/{{ skill.name | ucfirst }}Icon.png" class="w10" />
 
-            <p class="w25">Skill Name 1</p>
+            <p class="w25">{{ skill.name | ucfirst }}</p>
 
-            <div class="progress w60"></div>
+            <progress-bar percentage="skill.score" class="w60"></progress-bar>
           </div>
         </div>
       </div>
@@ -103,14 +105,18 @@
             </a>
           </div>
 
-          <hr>
+          <hr class="mb30">
 
-          <div class="flex justify-between">
-            <img src="images/SmallRedBadge.png" class="w10" />
+          <div ng-repeat="feedItem in user.feed track by $index" class="mb30">
+            <day-separator ng-if="isNewDay($index)" day="feedItem.timestamp"></day-separator>
 
-            <p class="w75">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+            <div class="flex justify-between">
+              <img ng-src="{{ feedItem.image }}" class="w10" />
 
-            <span class="badge success w10">50 XP</span>
+              <p class="w65">{{ feedItem.copy }}</p>
+
+              <span class="badge success w10">{{ feedItem.xp }} XP</span>
+            </div>
           </div>
         </div>
         <div class="col-xs-12 col-md-6">
@@ -122,12 +128,10 @@
             </a>
           </div>
 
-          <hr>
+          <hr class="mb30">
 
-          <div class="flex justify-between">
-            <span class="marker warning"></span>
-
-            <p class="w90">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+          <div ng-repeat="problem in user.problems">
+            <problem problem="problem"></problem>
           </div>
 
           <hr>
@@ -135,9 +139,31 @@
           <div class="flex justify-between">
             <h3>Kudos</h3>
 
-            <a href="#" class="w25">
+            <a href="#" class="w25" ng-click="giveKudos = true">
               <img src="images/GiveKudosButton.png" class="w100" />
             </a>
+          </div>
+
+          <div class="kudos" ng-show="giveKudos">
+            <div class="flex justify-center">
+              <div class="text-center p20">
+                <h5>THIS WEEK</h5>
+                <h1 class="circle success">{{ user.kudos.week_score }}</h1>
+              </div class="text-center p20">
+              <div>
+                <h5>ALL TIME</h5>
+                <h1 class="circle warning">{{ user.kudos.all_time }}</h1>
+              </div>
+            </div>
+
+            <div class="flex justify-between" ng-repeat="kudos in user.kudos.kudos_feed">
+              <img ng-src="{{ kudos.image }}" class="w10" />
+
+              <div class="w85">
+                <h6>{{ kudos.name }}</h6>
+                <p>{{ kudos.copy }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -167,6 +193,10 @@
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
+    <script src="scripts/directives.js"></script>
+    <script src="scripts/filters.js"></script>
+    <script src="scripts/factories.js"></script>
+    <script src="scripts/controllers.js"></script>
     <!-- endbuild -->
   </body>
 </html>
