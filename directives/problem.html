@@ -1,0 +1,15 @@
+<div class="flex justify-between mb30">
+  <span ng-class="{'success': problem.days_due >= 0, 'danger': problem.days_due < 0}" class="marker"></span>
+
+  <div class="w90">
+    <p>{{ problem.copy }}</p>
+
+    <small ng-class="{'success': problem.days_due >= 0, 'danger': problem.days_due < 0}">
+      <em>
+        {{ problem.days_due | abs }}
+        <ng-pluralize count="problem.days_due | abs" when="{'1': 'DAY', 'other': 'DAYS'}"></ng-pluralize>
+        {{ problem.days_due >= 0 ? 'REMAINING' : 'OVERDUE'}}
+      </em>
+    </small>
+  </div>
+</div>
