@@ -15,79 +15,86 @@
 
     <script src="scripts/vendor/modernizr.js"></script>
   </head>
-  <body ng-app="PlayApp">
+  <body ng-app="PlayApp" ng-controller="ProfileCtrl">
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="container-fluid" ng-controller="ProfileCtrl">
+    <div class="container-fluid">
       <div class="row highlight">
-        <div class="col-xs-12 col-md-6 p70">
-          <div class="flex justify-between mb20">
-            <div class="w20">
-              <img ng-src="{{ user.info.image }}" class="w100 circle">
-            </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-md-6 p70">
+              <div class="flex justify-between mb20">
+                <div class="w30">
+                  <img ng-src="{{ user.info.image }}" class="w100 round orange-border">
+                </div>
 
-            <div class="w75">
-              <h2>{{ user.info.name }}</h2>
+                <div class="w65">
+                  <h2>{{ user.info.name }}</h2>
 
-              <div class="mb20 small">
-                <img src="images/SmallTickIcon.png" class="icon">
-                {{ user.info.goals_complete }} goals complete this week
-                &nbsp;|&nbsp;
-                <img src="images/SmallSpannerIcon.png" class="icon">
-                {{ user.info.problems_owned }} open problems owned
+                  <div class="mb20 small">
+                    <img src="images/SmallTickIcon.png" class="icon">
+                    {{ user.info.goals_complete }} goals complete this week
+                    &nbsp;|&nbsp;
+                    <img src="images/SmallSpannerIcon.png" class="icon">
+                    {{ user.info.problems_owned }} open problems owned
+                  </div>
+
+                  <div class="flex justify-between">
+                    <span>
+                      Level 12
+                    </span>
+                    <span>
+                      15,200/18,000 XP
+                    </span>
+                  </div>
+
+                  <progress-bar percentage="0.84"></progress-bar>
+                </div>
+              </div>
+
+              <div class="flex justify-between mb20">
+                <b>BADGES ({{ user.info.total_badges }})</b>
+
+                <a href="#" class="w20">
+                  <img src="images/ViewAllButton.png" class="w100">
+                </a>
               </div>
 
               <div class="flex justify-between">
-                <span>
-                  Level 12
-                </span>
-                <span>
-                  15,200/18,000 XP
-                </span>
+                <img src="images/RedBadge.png" class="w15">
+                <img src="images/OrangeBadge.png" class="w15">
+                <img src="images/BlueBadge.png" class="w15">
+                <img src="images/PinkBadge.png" class="w15">
+                <img src="images/GreenBadge.png" class="w15">
+              </div>
+            </div>
+
+
+            <div class="col-xs-12 col-md-6 p70">
+              <div class="flex justify-between mb20">
+                <h2>Personal Skills</h2>
+
+                <a href="#" class="w20">
+                  <img src="images/ViewAllButton.png" class="w100">
+                </a>
               </div>
 
-              <progress-bar percentage="0.84"></progress-bar>
+              <div class="flex justify-between mb10" ng-repeat="skill in user.skills">
+                <img ng-src="images/{{ skill.name | ucfirst }}Icon.png" class="w10">
+
+                <p class="w25">{{ skill.name | ucfirst }}</p>
+
+                <progress-bar percentage="skill.score" class="w60"></progress-bar>
+              </div>
             </div>
-          </div>
-
-          <div class="flex justify-between mb20">
-            <b>BADGES ({{ user.info.total_badges }})</b>
-
-            <a href="#" class="w20">
-              <img src="images/ViewAllButton.png" class="w100">
-            </a>
-          </div>
-
-          <div class="flex justify-between">
-            <img src="images/RedBadge.png" class="w15">
-            <img src="images/OrangeBadge.png" class="w15">
-            <img src="images/BlueBadge.png" class="w15">
-            <img src="images/PinkBadge.png" class="w15">
-            <img src="images/GreenBadge.png" class="w15">
-          </div>
-        </div>
-
-
-        <div class="col-xs-12 col-md-6 p70">
-          <div class="flex justify-between mb20">
-            <h2>Personal Skills</h2>
-
-            <a href="#" class="w20">
-              <img src="images/ViewAllButton.png" class="w100">
-            </a>
-          </div>
-
-          <div class="flex justify-between mb10" ng-repeat="skill in user.skills">
-            <img ng-src="images/{{ skill.name | ucfirst }}Icon.png" class="w10">
-
-            <p class="w25">{{ skill.name | ucfirst }}</p>
-
-            <progress-bar percentage="skill.score" class="w60"></progress-bar>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-6">
           <div class="flex justify-between">
